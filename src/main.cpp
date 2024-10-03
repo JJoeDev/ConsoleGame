@@ -13,7 +13,5 @@ int main(){
 
     app.Loop();
 
-    std::cin.get();
-
     return 0;
 }

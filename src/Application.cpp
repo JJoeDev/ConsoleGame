@@ -1,6 +1,6 @@
 #include "Application.h"
 
-#include "EventHandler.h"
+#include "WindowsEventHandler.h"
 
 #include <windows.h>
 #include <iostream>
@@ -23,12 +23,14 @@ namespace Engine {
         HMENU hmenu = GetSystemMenu(m_handle, FALSE);
         EnableMenuItem(hmenu, SC_CLOSE, MF_GRAYED);
 
-        if(SetConsoleCtrlHandler(WindowsEventHandler, TRUE)){ // not working correct
-            std::cout << "Console CTRL Handler Set\n";
-        }
+        LONG style = GetWindowLong(m_handle, GWL_STYLE);
+        style &= ~WS_MAXIMIZEBOX;
+        SetWindowLong(m_handle, GWL_STYLE, style);
+        SetWindowPos(m_handle, NULL, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE | SWP_NOZORDER | SWP_NOACTIVATE | SWP_FRAMECHANGED);
+
+        SetConsoleCtrlHandler(WindowsEventHandler, TRUE);
 
         m_running = true;
-        std::clog << specs.title << " | " << specs.width << 'x' << specs.height << std::endl;
     }
 
     Application::~Application(){
@@ -36,10 +38,8 @@ namespace Engine {
     }
 
     void Application::Loop(){
-        while(!WindowsQuitEvent){
-
+        while(m_running){
+        
         }
-
-        std::cout << "LOOP CLOSED\n";
     }
 }

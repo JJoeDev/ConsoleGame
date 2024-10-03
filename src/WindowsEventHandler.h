@@ -4,21 +4,16 @@
 #include <iostream>
 #include <windows.h>
 
-namespace Engine{
-    static bool WindowsQuitEvent = false;
-
+namespace Engine{ // This event handler makes it so the application cannot be quit by built in events
     static BOOL WINAPI WindowsEventHandler(DWORD eventCode){
 		switch(eventCode){
 		case CTRL_C_EVENT:
-			std::cout << "CTRL + C EVENT\n";
 			return TRUE;
 			break;
 		case CTRL_BREAK_EVENT:
-			std::cout << "CTRL + BREAK EVENT\n";
 			return TRUE;
 			break;
 		case CTRL_CLOSE_EVENT:
-			std::cout << "CTRL + CLOSE EVENT\n";
 			return TRUE;
 			break;
 		default:
