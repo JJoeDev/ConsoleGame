@@ -1,5 +1,7 @@
 #include "Application.h"
 
+#include "EventHandler.h"
+
 #include <windows.h>
 #include <iostream>
 
@@ -18,6 +20,14 @@ namespace Engine {
         SetConsoleTitle(specs.title.c_str());
         MoveWindow(m_handle, centerX, centerY, specs.width, specs.height, true); // Handle, X, Y, Width, Height, Redraw window
 
+        HMENU hmenu = GetSystemMenu(m_handle, FALSE);
+        EnableMenuItem(hmenu, SC_CLOSE, MF_GRAYED);
+
+        if(SetConsoleCtrlHandler(WindowsEventHandler, TRUE)){ // not working correct
+            std::cout << "Console CTRL Handler Set\n";
+        }
+
+        m_running = true;
         std::clog << specs.title << " | " << specs.width << 'x' << specs.height << std::endl;
     }
 
@@ -25,5 +35,11 @@ namespace Engine {
 
     }
 
+    void Application::Loop(){
+        while(!WindowsQuitEvent){
 
+        }
+
+        std::cout << "LOOP CLOSED\n";
+    }
 }

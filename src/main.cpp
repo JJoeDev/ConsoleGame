@@ -11,6 +11,8 @@ int main(){
 
     Engine::Application app(specs);
 
+    app.Loop();
+
     std::cin.get();
 
     return 0;

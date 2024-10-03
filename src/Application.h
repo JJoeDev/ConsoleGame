@@ -23,10 +23,15 @@ namespace Engine {
         Application(const AppSpecifications& specs);
         virtual ~Application();
 
+        void CloseApplication() {m_running = false;}
+        void Loop();
+
     private:
         HWND m_handle;
         HWND m_desktopHandle;
         RECT m_consoleRect;
+
+        bool m_running;
     };
 
 } // Engine
