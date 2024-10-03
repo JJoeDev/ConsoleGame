@@ -12,7 +12,7 @@ typedef std::string tstring;
 #endif
 
 namespace Engine {
-    typedef struct AppSpecifications{
+    struct AppSpecifications{
         tstring title = "Hello, World";
         uint32_t width{500};
         uint32_t height{500};
@@ -23,7 +23,7 @@ namespace Engine {
         Application(const AppSpecifications& specs);
         virtual ~Application();
 
-        void CloseApplication() {m_running = false;}
+        void CloseApplication() {m_shouldClose = true;}
         void Loop();
 
     private:
@@ -31,7 +31,7 @@ namespace Engine {
         HWND m_desktopHandle;
         RECT m_consoleRect;
 
-        bool m_running;
+        bool m_shouldClose{false};
     };
 
 } // Engine

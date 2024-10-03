@@ -4,9 +4,9 @@
 
 int main(){
     Engine::AppSpecifications specs{
-        .title = "Game of Life",
-        .width = 500,
-        .height = 500,
+        "Game of Life",
+        500,
+        500,
     };
 
     Engine::Application app(specs);
