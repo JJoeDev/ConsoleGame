@@ -18,6 +18,7 @@ namespace Engine{ // This event handler makes it so the application cannot be qu
 			break;
 		default:
 			return TRUE;
+			break;
 		}
     	return FALSE;
     }

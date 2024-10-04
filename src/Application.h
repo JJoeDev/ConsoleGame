@@ -23,7 +23,6 @@ namespace Engine {
         Application(const AppSpecifications& specs);
         virtual ~Application();
 
-        void CloseApplication() {m_shouldClose = true;}
         void Loop();
 
     private:

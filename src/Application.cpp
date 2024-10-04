@@ -6,6 +6,7 @@
 #include <iostream>
 
 #include "AppEventManager.h"
+#include "Keys.h"
 
 namespace Engine {
     Application::Application(const AppSpecifications& specs){
@@ -36,9 +37,9 @@ namespace Engine {
 
         SetConsoleCtrlHandler(WindowsEventHandler, TRUE);
 
-        //for(char i = 'A'; i < 'z'; ++i){
-        //    fprintf(stdout, "CHAR: %c | HEX: 0x%x\n", i, i);
-        //}
+        for(char i = 'A'; i < 'z'; ++i){
+            fprintf(stdout, "CHAR: %c | HEX: 0x%x\n", i, i);
+        }
 
         AppEventManager::AddEventKey(VK_ESCAPE, &m_shouldClose);
     }
