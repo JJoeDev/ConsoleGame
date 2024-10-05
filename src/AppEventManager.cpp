@@ -4,7 +4,7 @@
 #include <iostream>
 
 namespace Engine{
-    std::unordered_map<uint32_t, bool*> AppEventManager::m_eventMap;
+    std::unordered_map<int32_t, bool*> AppEventManager::m_eventMap;
 
     void AppEventManager::PollEvents(){
         for(auto& [key, ptr] : m_eventMap){
@@ -14,10 +14,9 @@ namespace Engine{
         }
     }
 
-    void AppEventManager::AddEventKey(uint32_t key, bool* isEventTriggered){
+    void AppEventManager::AddEventKey(int32_t key, bool* isEventTriggered){
         if(m_eventMap.find(key) == m_eventMap.end()){
             m_eventMap[key] = isEventTriggered;
-            std::cout << "KEY ADDED: " << key << '\n';
         }
     }
 }

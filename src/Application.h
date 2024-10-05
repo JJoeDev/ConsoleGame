@@ -4,6 +4,10 @@
 #include <windows.h>
 #include <cstdint>
 #include <string>
+#include <memory>
+#include <chrono>
+
+#include "RenderEngine.h"
 
 #ifdef UNICODE
 typedef std::wstring tstring;
@@ -16,19 +20,26 @@ namespace Engine {
         tstring title = "Hello, World";
         uint32_t width{500};
         uint32_t height{500};
+        uint16_t fpsMillis{32};
     };
 
     class Application {
     public:
-        Application(const AppSpecifications& specs);
-        virtual ~Application();
+        explicit Application(const AppSpecifications& specs);
+        virtual ~Application() = default;
 
         void Loop();
 
     private:
+        const AppSpecifications m_specs;
+
         HWND m_handle;
         HWND m_desktopHandle;
         RECT m_consoleRect;
+
+        std::unique_ptr<Renderer::RenderEngine> m_renderer{nullptr};
+
+        std::chrono::time_point<std::chrono::system_clock> m_frameStart, m_frameEnd;
 
         bool m_shouldClose{false};
     };
