@@ -66,18 +66,4 @@ namespace Engine {
             }
         }
     }
-    /*
-        float actualFrameTime = dt + (m_specs.fpsMillis - dt > 0 ? m_specs.fpsMillis - dt : 0);
-        float fps = (actualFrameTime > 0.0f) ? (1000.0f / actualFrameTime) : 0.0f;
-
-        std::cout << "FPS: " << fps << std::endl;
-
-        auto overhead = m_specs.fpsMillis - dt;
-        if (overhead > 0) {
-            std::this_thread::sleep_for(ms(overhead));
-        }
-    }
-}
-     */
-
 }

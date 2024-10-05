@@ -1,7 +1,6 @@
 #include "AppEventManager.h"
 
 #include <windows.h>
-#include <iostream>
 
 namespace Engine{
     std::unordered_map<int32_t, bool*> AppEventManager::m_eventMap;

@@ -2,7 +2,6 @@
 #define RENDERENGINE_H
 
 #include <cstdint>
-#include <array>
 #include <memory>
 #include <windows.h>
 

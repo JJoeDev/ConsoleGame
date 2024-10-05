@@ -28,7 +28,6 @@ namespace Renderer{
         SetCursorPos(0, 0);
         std::string drawBuffer;
 
-        // Pre-fill the draw buffer with the frame content
         for (int y = 0; y < m_frameY; ++y) {
             for (int x = 0; x < m_frameX; ++x) {
                 if (y == 0 || y == m_frameY - 1) {
@@ -37,7 +36,6 @@ namespace Renderer{
                     drawBuffer += (x == 0 || x == m_frameX - 1) ? '|' : ' ';
                 }
             }
-            //drawBuffer += '\n';
         }
 
         std::cout << drawBuffer;
