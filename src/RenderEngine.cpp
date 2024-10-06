@@ -13,6 +13,11 @@ namespace Renderer{
         Utils::FATAL_ASSERT(m_consoleHandle, "Could not get handle to console window!");
 
         Utils::FATAL_ASSERT(GetConsoleScreenBufferInfo(m_consoleHandle, &m_csbInfo), "Could not get console screen buffer info");
+        Utils::FATAL_ASSERT(GetConsoleCursorInfo(m_consoleHandle, &m_ccInfo), "Could not get console cursor info");
+
+        m_ccInfo.bVisible = false;
+
+        Utils::FATAL_ASSERT(SetConsoleCursorInfo(m_consoleHandle, &m_ccInfo), "Could not set console cursor info");
 
         m_frameX = m_csbInfo.dwSize.X;
         m_frameY = m_csbInfo.srWindow.Bottom - m_csbInfo.srWindow.Top;

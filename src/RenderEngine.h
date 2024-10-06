@@ -20,6 +20,8 @@ namespace Renderer{
         RECT m_clientRect;
 
         CONSOLE_SCREEN_BUFFER_INFO m_csbInfo{};
+        CONSOLE_CURSOR_INFO m_ccInfo{};
+
         const COORD m_topLeft{0, 0};
         uint16_t m_frameX, m_frameY;
         uint32_t m_frameLength;

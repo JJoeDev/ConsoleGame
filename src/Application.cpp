@@ -47,8 +47,11 @@ namespace Engine {
         using clock = std::chrono::high_resolution_clock;
         using ms = std::chrono::duration<float, std::milli>;
 
+        int i = 0;
+
         while(!m_shouldClose){
             m_frameStart = clock::now();
+            i++;
 
             AppEventManager::PollEvents();
             m_renderer->Render();
@@ -58,7 +61,7 @@ namespace Engine {
 
             float realFrameTime = dt + (m_specs.fpsMillis - dt > 0 ? m_specs.fpsMillis - dt : 0);
             float fps = (realFrameTime > 0.0f) ? (1000.0f / realFrameTime) : 0.0f;
-            std::cout << fps << " FPS";
+            std::cout << fps << " FPS | FRAMES DRAWN: " << i;
 
             auto overhead = m_specs.fpsMillis - dt;
             if(overhead > 0){
