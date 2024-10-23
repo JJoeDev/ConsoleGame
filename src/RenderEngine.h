@@ -3,6 +3,7 @@
 
 #include <cstdint>
 #include <memory>
+#include <vector>
 #include <windows.h>
 
 namespace Renderer{
@@ -12,6 +13,8 @@ namespace Renderer{
         virtual ~RenderEngine();
 
         void Render();
+        void RenderResetCursor();
+        void RenderStatusBarContent(const std::string& content);
         void SetCursorPos(uint16_t x, uint16_t y);
 
     private:
@@ -25,6 +28,9 @@ namespace Renderer{
         const COORD m_topLeft{0, 0};
         uint16_t m_frameX, m_frameY;
         uint32_t m_frameLength;
+
+        std::vector<char> m_frameStr;
+        std::vector<char> m_statFrame;
     };
 }
 

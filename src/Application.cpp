@@ -5,6 +5,7 @@
 #include <windows.h>
 #include <iostream>
 #include <thread>
+#include <bits/stl_algo.h>
 
 #include "AppEventManager.h"
 #include "Keys.h"
@@ -49,19 +50,25 @@ namespace Engine {
 
         int i = 0;
 
+        static std::string statusContent = "";
+
         while(!m_shouldClose){
             m_frameStart = clock::now();
             i++;
 
             AppEventManager::PollEvents();
-            m_renderer->Render();
 
             m_frameEnd = clock::now();
             auto dt = std::chrono::duration_cast<ms>(m_frameEnd - m_frameStart).count();
 
+            m_renderer->Render();
+            m_renderer->RenderStatusBarContent(statusContent);
+
             float realFrameTime = dt + (m_specs.fpsMillis - dt > 0 ? m_specs.fpsMillis - dt : 0);
             float fps = (realFrameTime > 0.0f) ? (1000.0f / realFrameTime) : 0.0f;
-            std::cout << fps << " FPS | FRAMES DRAWN: " << i;
+            statusContent = std::to_string(fps) + "FPS | FRAMES DRAWN: " + std::to_string(i);
+
+            //m_renderer->RenderResetCursor();
 
             auto overhead = m_specs.fpsMillis - dt;
             if(overhead > 0){
