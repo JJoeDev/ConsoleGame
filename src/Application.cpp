@@ -40,6 +40,9 @@ namespace Engine {
         SetConsoleCtrlHandler(WindowsEventHandler, TRUE);
 
         AppEventManager::AddEventKey(VK_ESCAPE, &m_shouldClose);
+        AppEventManager::AddEventKey(KEY_P, &m_paused);
+
+        // AppEventManager::RemoveEventKey(VK_ESCAPE);
 
         m_renderer = std::make_unique<Renderer::RenderEngine>(m_handle);
     }
@@ -53,10 +56,15 @@ namespace Engine {
         static std::string statusContent = "";
 
         while(!m_shouldClose){
+            AppEventManager::PollEvents();
+
+            if(m_paused){
+                //std::cout << "\033[1;31m";
+                continue;
+            }
+
             m_frameStart = clock::now();
             i++;
-
-            AppEventManager::PollEvents();
 
             m_frameEnd = clock::now();
             auto dt = std::chrono::duration_cast<ms>(m_frameEnd - m_frameStart).count();

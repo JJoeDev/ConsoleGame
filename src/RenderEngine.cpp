@@ -32,10 +32,9 @@ namespace Renderer{
             }
         }
 
-        for(int x = 0; x < m_frameX - 1; ++x){
+        for(int x = 0; x < m_frameX - 2; ++x){
             m_statFrame.push_back(x == m_frameX - 2 ? '|' : '-');
         }
-        m_statFrame.push_back('|');
     }
 
     RenderEngine::~RenderEngine(){
@@ -45,8 +44,6 @@ namespace Renderer{
 
     void RenderEngine::Render() {
         SetCursorPos(0, 0);
-
-        
 
         std::cout << m_frameStr.data();
     }

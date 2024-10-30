@@ -42,6 +42,7 @@ namespace Engine {
         std::chrono::time_point<std::chrono::system_clock> m_frameStart, m_frameEnd;
 
         bool m_shouldClose{false};
+        bool m_paused{false};
     };
 
 } // Engine

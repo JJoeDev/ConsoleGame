@@ -9,10 +9,16 @@ namespace Engine{
     public:
         static void PollEvents();
 
-        static void AddEventKey(int32_t, bool* isEventTriggered);
+        static void AddEventKey(const int32_t key, bool* isEventTriggered);
+        static void RemoveEventKey(const int32_t key);
 
     private:
-        static std::unordered_map<int32_t, bool*> m_eventMap;
+        struct m_KeyStateKeys{
+            bool* trigger{nullptr};
+            bool prevState = false;
+        };
+
+        static std::unordered_map<int32_t, m_KeyStateKeys> m_eventMap;
     };
 }
 
