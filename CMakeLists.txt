@@ -7,6 +7,8 @@ set(CMAKE_CXX_FLAGS "-Wall -Wpedantic -Wextra -Wconversion")
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
+set(CMAKE_EXE_LINKER_FLAGS "-static")
+
 file(GLOB_RECURSE SRC "src/*.cpp")
 
 add_executable(${PROJECT_NAME} ${SRC})
