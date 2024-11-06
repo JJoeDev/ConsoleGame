@@ -55,13 +55,23 @@ namespace Renderer{
         std::cout << content;
     }
 
-    void RenderEngine::RenderResetCursor(){
+    void RenderEngine::RenderResetCursor() const{
         SetCursorPos(0, 0);
     }
 
-    void RenderEngine::SetCursorPos(uint16_t x, uint16_t y){
+    void RenderEngine::SetCursorPos(const uint16_t x, const uint16_t y) const {
         std::cout.flush();
         const COORD c = {static_cast<short>(x), static_cast<short>(y)};
         SetConsoleCursorPosition(m_consoleHandle, c);
     }
+
+    void RenderEngine::DrawCharAtCursor(const char c){
+        std::cout << c;
+    }
+
+    void RenderEngine::DrawStrAtCursor(const std::string& str){
+        std::cout << str;
+    }
+
+
 }

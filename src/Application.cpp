@@ -5,10 +5,10 @@
 #include <windows.h>
 #include <iostream>
 #include <thread>
-#include <bits/stl_algo.h>
 
 #include "AppEventManager.h"
 #include "Keys.h"
+#include "Game.h"
 
 namespace Engine {
     Application::Application(const AppSpecifications& specs) : m_specs(specs){
@@ -45,6 +45,7 @@ namespace Engine {
         // AppEventManager::RemoveEventKey(VK_ESCAPE);
 
         m_renderer = std::make_unique<Renderer::RenderEngine>(m_handle);
+        m_game = std::make_unique<Game>(m_renderer);
     }
 
     void Application::Loop(){
@@ -58,10 +59,7 @@ namespace Engine {
         while(!m_shouldClose){
             AppEventManager::PollEvents();
 
-            if(m_paused){
-                //std::cout << "\033[1;31m";
-                continue;
-            }
+            if(m_paused) continue;
 
             m_frameStart = clock::now();
             i++;
@@ -72,11 +70,12 @@ namespace Engine {
             m_renderer->Render();
             m_renderer->RenderStatusBarContent(statusContent);
 
+            m_game->Update();
+            m_game->Draw();
+
             float realFrameTime = dt + (m_specs.fpsMillis - dt > 0 ? m_specs.fpsMillis - dt : 0);
             float fps = (realFrameTime > 0.0f) ? (1000.0f / realFrameTime) : 0.0f;
             statusContent = std::to_string(fps) + "FPS | FRAMES DRAWN: " + std::to_string(i);
-
-            //m_renderer->RenderResetCursor();
 
             auto overhead = m_specs.fpsMillis - dt;
             if(overhead > 0){

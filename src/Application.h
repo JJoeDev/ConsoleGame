@@ -8,6 +8,7 @@
 #include <chrono>
 
 #include "RenderEngine.h"
+#include "Game.h"
 
 #ifdef UNICODE
 typedef std::wstring tstring;
@@ -37,7 +38,8 @@ namespace Engine {
         HWND m_desktopHandle;
         RECT m_consoleRect;
 
-        std::unique_ptr<Renderer::RenderEngine> m_renderer{nullptr};
+        std::shared_ptr<Renderer::RenderEngine> m_renderer{nullptr};
+        std::unique_ptr<Game> m_game{nullptr};
 
         std::chrono::time_point<std::chrono::system_clock> m_frameStart, m_frameEnd;
 

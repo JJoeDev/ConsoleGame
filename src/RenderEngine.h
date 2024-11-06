@@ -13,9 +13,15 @@ namespace Renderer{
         virtual ~RenderEngine();
 
         void Render();
-        void RenderResetCursor();
         void RenderStatusBarContent(const std::string& content);
-        void SetCursorPos(uint16_t x, uint16_t y);
+        void RenderResetCursor() const;
+        void SetCursorPos(const uint16_t x, const uint16_t y) const;
+
+        void DrawCharAtCursor(const char c);
+        void DrawStrAtCursor(const std::string& str);
+
+        [[nodiscard]] uint16_t GetFrameX() const {return m_frameX;}
+        [[nodiscard]] uint16_t GetFrameY() const {return m_frameY;}
 
     private:
         HWND* m_consoleWindow;
