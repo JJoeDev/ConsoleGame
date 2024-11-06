@@ -1,12 +1,10 @@
 #include "Application.h"
 
-#include <iostream>
-
 int main(){
     Engine::AppSpecifications specs{
-        "Game of Life",
-        500,
-        500,
+        "Game of Life", // Title
+        500, // Width
+        500, // Height
         16, // 16ms for 60FPS (1.0 / 60.0)
     };
 

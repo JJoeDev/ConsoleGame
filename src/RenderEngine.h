@@ -2,6 +2,7 @@
 #define RENDERENGINE_H
 
 #include <cstdint>
+#include <string>
 #include <memory>
 #include <vector>
 #include <windows.h>
@@ -22,6 +23,7 @@ namespace Renderer{
 
         [[nodiscard]] uint16_t GetFrameX() const {return m_frameX;}
         [[nodiscard]] uint16_t GetFrameY() const {return m_frameY;}
+        [[nodiscard]] uint16_t GetStatusBarY() const {return 3;}
 
     private:
         HWND* m_consoleWindow;

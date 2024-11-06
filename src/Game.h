@@ -3,6 +3,8 @@
 
 #include <cstdint>
 #include <memory>
+#include <vector>
+#include <string>
 
 #include "RenderEngine.h"
 
@@ -17,7 +19,9 @@ public:
 private:
     std::shared_ptr<Renderer::RenderEngine> m_renderEngine{nullptr};
     uint32_t m_mapX, m_mapY;
-    int tmpX = 0, tmpY = 0;
+
+    std::vector<std::vector<int>> m_grid;
+    mutable std::string m_drawBuffer;
 };
 
 #endif //GAME_H
